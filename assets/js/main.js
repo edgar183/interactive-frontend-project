@@ -1,5 +1,6 @@
 var infoBox = document.getElementById('info-dialog');
 var btn = document.getElementById("info-btn");
+var sendBtn = document.getElementById("send-btn");
 btn.onclick = function() {
     infoBox.style.display = "block";
 };
@@ -18,8 +19,11 @@ var span = document.getElementsByClassName("close")[0];
 span.onclick = function() {
     contactBox.style.display = "none";
 };
-$("button").hover(function(){
+sendBtn.onclick = function() {
+    contactBox.style.display = "none";
+};
+$("button").hover(function() {
     $(this).css("background-color", "#428bca");
-    }, function(){
+}, function() {
     $(this).css("background-color", "inherit");
 });

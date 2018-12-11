@@ -7,6 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("user_vZiPbt7Z5VMSjoQ7bL3wl");
+        })();
+    </script>
     <link rel="stylesheet" href="assets/css/main.css" type="text/css" />
     <title>Document</title>
 </head>
@@ -32,6 +38,7 @@
             </div>
         </div>
     </nav>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="info-dialog" class="dialog">
         <div class="info-content">
             <p>This application shows the tourists movement from one country to other by flights information departing the selected country</p>
@@ -54,15 +61,14 @@
                     <label for="message">Message</label>
                     <textarea row="5" name="projectsummary" class="form-control" id="projectsummary" placeholder="Project Description" required></textarea>
                 </div>
-                <button type="submit" class="btn btn-success">Send</button>
+                <button id="send-btn" type="submit" class="btn btn-success">Send</button>
             </form>
         </div>
     </div>
     <div class="container-fluid">
         <div id="map"></div>
     </div>
-    <!--  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5RgNJYcMfGC61vZjMPvnH1SkACBEWkVE&callback=initMap"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?libraries=visualization"></script>-->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5RgNJYcMfGC61vZjMPvnH1SkACBEWkVE&libraries=places&callback=initAutocomplete"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/map.js"></script>
     <script type="text/javascript" src="assets/js/main.js"></script>
