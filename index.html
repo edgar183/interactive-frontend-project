@@ -14,11 +14,10 @@
         })();
     </script>
     <link rel="stylesheet" href="assets/css/main.css" type="text/css" />
-    <title>Document</title>
+    <title>Google Map Place Search</title>
 </head>
 
 <body>
-
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -34,11 +33,12 @@
                 <ul class="nav navbar-nav">
                     <li><button id="info-btn" class="btn"><i class="fas fa-question-circle"></i><span class="sr-only"></span></button></li>
                     <li><button id="contact-form" class="btn"><i class="fas fa-envelope"></i></button></li>
+                    
                 </ul>
+                <input id="pac-input" class="controls" type="text" placeholder="Search Your Destination">
             </div>
         </div>
     </nav>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
     <div id="info-dialog" class="dialog">
         <div class="info-content">
             <p>This application shows the tourists movement from one country to other by flights information departing the selected country</p>
@@ -65,8 +65,16 @@
             </form>
         </div>
     </div>
+    
     <div class="container-fluid">
+
         <div id="map"></div>
+        <div id="infowindow-content">
+            <img id="place-icon" src="" height="16" width="16">
+            <span id="place-name" class="title"></span>
+            <span id="place-address"></span>
+        </div>
+
     </div>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5RgNJYcMfGC61vZjMPvnH1SkACBEWkVE&libraries=places&callback=initAutocomplete"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
