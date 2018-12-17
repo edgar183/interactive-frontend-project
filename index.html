@@ -65,6 +65,17 @@
             <br>
             <span id="place-address"></span>
         </div>
+        <div id="custom-controls">
+            <legend>Select one or all</legend>
+            <input type="checkbox" name="selector" value="Attractions" id="attractions">
+            <label for="attractions">Attractions</label><br>
+            <input type="checkbox" name="selector" value="Accommodation" id="accommodation" checked>
+            <label for="accommodation">Accommodation</label><br>
+            <input type="checkbox" name="selector" value="Bars" id="bars">
+            <label for="bars">Bars</label><br>
+            <input type="checkbox" name="selector" value="Restaurants" id="restaurants">
+            <label for="restaurants">Restaurants</label><br>
+        </div>
 
     </div>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5RgNJYcMfGC61vZjMPvnH1SkACBEWkVE&libraries=places&callback=initAutocomplete"></script>
