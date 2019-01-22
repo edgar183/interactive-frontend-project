@@ -154,3 +154,10 @@ body {
 #target {
     width: 345px;
 }
+
+#custom-controls {
+    top: 3px;
+    right: 3px;
+    padding: 5px 10px 10px;
+    background-color: #f8f8f8;
+}
