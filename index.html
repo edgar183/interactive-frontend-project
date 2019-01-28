@@ -17,21 +17,22 @@
     <link rel="stylesheet" href="assets/css/main.css" type="text/css" />
     <title>Holiday Destination Search</title>
 </head>
+
 <body>
     <!-- Nav Bar -->
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Holiday Destination Search</a>
-            <ul class="nav navbar-nav">
-                <li><button id="info-btn" class="btn"><i class="fas fa-question-circle"></i></button></li>
-                <li><button id="contact-form" class="btn"><i class="fas fa-envelope"></i></button></li>
-            </ul>
+    <nav class="navbar navbar-default container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <a class="navbar-brand" href="#">Holiday Destination Search</a>
+                <button id="info-btn" class="btn"><i class="fas fa-question-circle"></i></button>
+                <button id="contact-form" class="btn"><i class="fas fa-envelope"></i></button>
+            </div>
         </div>
     </nav>
     <!-- Info dialog box -->
     <div id="info-dialog" class="dialog">
         <div class="info-content">
-            <p>The application can help user to search for their next holiday destination. The user can select destination city and one or all tourist attractions. Museums, Accommodation, Bars and Restaurants.</p>
+            <p>The application can help user to search for their next holiday destination. The user can select destination city and one of tourist attractions. Museums, Accommodation, Bars and Restaurants.</p>
         </div>
     </div>
     <!-- Contac dialog box -->
@@ -84,26 +85,26 @@
             </div>
         </div>
         <!-- <img id="place-icon" src="" height="16" width="16"> -->
-
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5RgNJYcMfGC61vZjMPvnH1SkACBEWkVE&libraries=places&callback=initAutocomplete"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="assets/js/map.js"></script>
         <script type="text/javascript" src="assets/js/main.js"></script>
         <script type="text/javascript" src="assets/js/sendEmail.js"></script>
+
+        <input id="pac-input" class="controls" type="text" placeholder="Search Your Destination">
+        <!-- Map Marker selection box -->
+        <div id="custom-controls">
+            <legend>Select one</legend>
+            <input type="radio" name="selector" value="Attractions" id="attractions">
+            <label for="attractions">Attractions</label><br>
+            <input type="radio" name="selector" value="Accommodation" id="accommodation">
+            <label for="accommodation">Accommodation</label><br>
+            <input type="radio" name="selector" value="Bars" id="bars">
+            <label for="bars">Bars</label><br>
+            <input type="radio" name="selector" value="Restaurants" id="restaurants">
+            <label for="restaurants">Restaurants</label><br>
+            <input type="button" value="Show" id="submit" onclick="renderMap();">
+        </div>
 </body>
-<input id="pac-input" class="controls" type="text" placeholder="Search Your Destination">
-<!-- Map Marker selection box -->
-<div id="custom-controls">
-    <legend>Select one</legend>
-    <input type="radio" name="selector" value="Attractions" id="attractions" checked>
-    <label for="attractions">Attractions</label><br>
-    <input type="radio" name="selector" value="Accommodation" id="accommodation">
-    <label for="accommodation">Accommodation</label><br>
-    <input type="radio" name="selector" value="Bars" id="bars">
-    <label for="bars">Bars</label><br>
-    <input type="radio" name="selector" value="Restaurants" id="restaurants">
-    <label for="restaurants">Restaurants</label><br>
-    <input type="button" value="Show" id="submit" onclick="search();">
-</div>
 
 </html>
