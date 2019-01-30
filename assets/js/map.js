@@ -1,102 +1,210 @@
-var origin = { lat: 53.423956, lng: -7.941006 };
-var marker;
+var map, input, poiIcon;
+var infowindow
+var newLocation;
+var autocomplete;
+var markers = [];
+var selectedTypes;
+var ireland = { lat: 53.423956, lng: -7.941006 };
+var MARKER_ICON = 'assets/icons/bar.png';
 
 function initAutocomplete() {
-    var map = new google.maps.Map(document.getElementById("map"), {
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 8,
-        center: origin,
+        center: ireland,
         streetViewControl: false,
-        gestureHandling: 'cooperative'
+        gestureHandling: 'cooperative',
+        fullscreenControl: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        minZoom: 5,
+        maxZoom: 18
     });
-    //place marker icon
-    var markerIcon = {
+    //place radio button group on map control
+    var radioButtons = document.getElementById('custom-controls');
+    map.controls[google.maps.ControlPosition.RIGHT].push(radioButtons);
+
+    // Create the autocomplete box
+    input = document.getElementById('pac-input');
+    autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', map);
+    // Set the data fields to return when the user selects a place.
+    autocomplete.setFields(
+        ['address_components', 'geometry', 'icon', 'name']);
+
+    //add search box on top left in map navigation
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(input);
+    autocomplete.addListener('place_changed', onPlaceChanged);
+}
+
+function onPlaceChanged() {
+    var place = autocomplete.getPlace();
+    var markerLocation = {
         url: 'assets/icons/location.png',
         size: new google.maps.Size(71, 71),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(7, 24),
         scaledSize: new google.maps.Size(28, 28)
     };
-    //place marker on map
-    marker = new google.maps.Marker({
-        animation: google.maps.Animation.DROP,
-        position: origin,
-        map: map,
-        title: 'Your are here',
-        icon: markerIcon
-    });
-    //create search box
-    var input = document.getElementById('pac-input');
-    var searchBox = new google.maps.places.SearchBox(input);
+    if (place.geometry) {
+        map.panTo(place.geometry.location);
+        map.setZoom(13);
+        markers.push(new google.maps.Marker({
+            animation: google.maps.Animation.DROP,
+            map: map,
+            icon: markerLocation,
+            title: 'Your are here',
+            position: place.geometry.location
+        }));
+    }
+    newLocation = place.geometry.location;
 
-    //place change event on search box
-    searchBox.addListener('places_changed', function() {
-        var places = searchBox.getPlaces();
-        if (places.length == 0) {
-            return;
-        }
-        //bound
-        var bounds = new google.maps.LatLngBounds();
-        var i, place;
-        for (i = 0; place = places[i]; i++) {
-            bounds.extend(place.geometry.location);
-            marker.setPosition(place.geometry.location);
-        }
-        map.fitBounds(bounds);
-        map.setZoom(18); //set zoom after pan t new location
-    });
-    marker.addListener('click', toggleBounce);
-    var clickHandler = new ClickEventHandler(map, origin);
 }
-//animation function
-function toggleBounce() {
-    if (marker.getAnimation() !== null) {
-        marker.setAnimation(null);
+
+function renderMap() {
+    console.log('the position of marker:' + newLocation);
+    console.log('1 is: ' + selectedTypes);
+    //get selected type
+    selectedTypes = '';
+    clearMarkers();
+    markers = [];
+    $('.types').each(function() {
+        if ($(this).is(':checked')) {
+            selectedTypes = ($(this).val());
+            clearMarkers();
+            markers = [];
+        }
+    });
+
+    let search = {
+        location: newLocation,
+        radius: 3000,
+        types: [selectedTypes]
+    };
+    console.log(selectedTypes);
+    infowindow = new google.maps.InfoWindow();
+    var places = new google.maps.places.PlacesService(map);
+    places.nearbySearch(search, callback);
+}
+
+function callback(results, status) {
+    console.log('callback function: ' + selectedTypes);
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+        clearResults();
+        clearMarkers();
+        for (var i = 0; i < results.length; i++) {
+            //check the type of poi and asigne the corect icon image
+            if (selectedTypes == 'museum') {
+                poiIcon = 'assets/icons/camera.png';
+            }
+            else if (selectedTypes == 'lodging') {
+                poiIcon = 'assets/icons/hotel.png';
+            }
+            else if (selectedTypes == 'bar') {
+                poiIcon = 'assets/icons/bar.png';
+            }
+            else if (selectedTypes == 'restaurant') {
+                poiIcon = 'assets/icons/restaurant.png';
+            }
+            //creat new marker for POI
+            var markerIcon = {
+                url: poiIcon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(7, 24),
+                scaledSize: new google.maps.Size(28, 28)
+            };
+            markers[i] = new google.maps.Marker({
+                map: map,
+                position: results[i].geometry.location,
+                animation: google.maps.Animation.DROP,
+                icon: markerIcon
+            });
+            google.maps.event.addListener(markers[i], 'click', function() {
+                infowindow.setContent(place.name + '<br>' + place.vicinity);
+                //var infowindowContent = document.getElementById('info-content');
+                //infowindow.setContent(infowindowContent);
+                infowindow.open(map, this);
+            });
+        }
+    }
+}
+//clear Markers from map
+function clearMarkers() {
+    for (var i = 0; i < markers.length; i++) {
+        if (markers[i]) {
+            markers[i].setMap(null);
+        }
+    }
+    markers = [];
+}
+//clear markers from map after change of location
+function clearResults(marker) {
+    for (var m in marker) {
+        marker[m].setMap(null)
+    }
+    marker = []
+}
+/*
+function dropMarker(i) {
+    return function() {
+        markers[i].setMap(map);
+    };
+}
+
+function addResult(result, i) {
+    var results = document.getElementById('results');
+    var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
+    var markerIcon = MARKER_ICON + markerLetter + '.png';
+
+    var tr = document.createElement('tr');
+    tr.style.backgroundColor = (i % 2 === 0 ? '#F0F0F0' : '#FFFFFF');
+    tr.onclick = function() {
+        google.maps.event.trigger(markers[i], 'click');
+    };
+
+    var iconTd = document.createElement('td');
+    var nameTd = document.createElement('td');
+    var icon = document.createElement('img');
+    icon.src = markerIcon;
+    icon.setAttribute('class', 'placeIcon');
+    icon.setAttribute('className', 'placeIcon');
+    var name = document.createTextNode(result.name);
+    iconTd.appendChild(icon);
+    nameTd.appendChild(name);
+    tr.appendChild(iconTd);
+    tr.appendChild(nameTd);
+    results.appendChild(tr);
+}
+
+
+
+
+// add info window to markers
+function showInfoWindow() {
+    var marker = this;
+    places.getDetails({ placeId: marker.placeResult.place_id },
+        function(place, status) {
+            if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                return;
+            }
+            infowindow.open(map, marker);
+            buildIWContent(place);
+        });
+}
+// Load the place information into the HTML elements used by the info window.
+function buildIWContent(place) {
+    document.getElementById('iw-icon').innerHTML = '<img class="hotelIcon" ' +
+        'src="' + place.icon + '"/>';
+    document.getElementById('iw-url').innerHTML = '<b><a href="' + place.url +
+        '">' + place.name + '</a></b>';
+    document.getElementById('iw-address').textContent = place.vicinity;
+
+    if (place.formatted_phone_number) {
+        document.getElementById('iw-phone-row').style.display = '';
+        document.getElementById('iw-phone').textContent =
+            place.formatted_phone_number;
     }
     else {
-        marker.setAnimation(google.maps.Animation.BOUNCE);
+        document.getElementById('iw-phone-row').style.display = 'none';
     }
 }
-/**
- * @constructor
- */
-var ClickEventHandler = function(map, origin) {
-    this.origin = origin;
-    this.map = map;
-    this.placesService = new google.maps.places.PlacesService(map);
-    this.infowindow = new google.maps.InfoWindow;
-    this.infowindowContent = document.getElementById('infowindow-content');
-    this.infowindow.setContent(this.infowindowContent);
-
-    // Listen for clicks on the map.
-    this.map.addListener('click', this.handleClick.bind(this));
-};
-
-ClickEventHandler.prototype.handleClick = function(event) {
-    console.log('You clicked on: ' + event.latLng);
-    // If the event has a placeId, use it.
-    if (event.placeId) {
-        console.log('You clicked on place:' + event.placeId);
-
-        // Calling e.stop() on the event prevents the default info window from
-        // showing.
-        // If you call stop here when there is no placeId you will prevent some
-        // other map click event handlers from receiving the event.
-        event.stop();
-        this.getPlaceInformation(event.placeId);
-    }
-};
-
-ClickEventHandler.prototype.getPlaceInformation = function(placeId) {
-    var me = this;
-    this.placesService.getDetails({ placeId: placeId }, function(place, status) {
-        if (status === 'OK') {
-            me.infowindow.close();
-            me.infowindow.setPosition(place.geometry.location);
-            me.infowindowContent.children['place-icon'].src = place.icon;
-            me.infowindowContent.children['place-name'].textContent = place.name;
-            me.infowindowContent.children['place-address'].textContent =
-                place.formatted_address;
-            me.infowindow.open(me.map);
-        }
-    });
-};
+*/
