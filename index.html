@@ -65,46 +65,47 @@
                 <tbody id="results"></tbody>
             </table>
         </div>
-        <!-- Info window for places on map -->
-        <div>
-            <div id="info-content">
-                <table>
-                    <tr id="iw-url-row" class="iw_table_row">
-                        <td id="iw-icon" class="iw_table_icon"></td>
-                        <td id="iw-url"></td>
-                    </tr>
-                    <tr id="iw-address-row" class="iw_table_row">
-                        <td class="iw_attribute_name">Address:</td>
-                        <td id="iw-address"></td>
-                    </tr>
-                    <tr id="iw-phone-row" class="iw_table_row">
-                        <td class="iw_attribute_name">Telephone:</td>
-                        <td id="iw-phone"></td>
-                    </tr>
-                </table>
-            </div>
+    </div>
+    <!-- Info window for places on map -->
+    <div>
+        <div id="info-content">
+            <table>
+                <tr id="iw-url-row" class="iw_table_row">
+                    <td id="iw-icon" class="iw_table_icon"></td>
+                    <td id="iw-url"></td>
+                </tr>
+                <tr id="iw-address-row" class="iw_table_row">
+                    <td class="iw_attribute_name">Address:</td>
+                    <td id="iw-address"></td>
+                </tr>
+                <tr id="iw-phone-row" class="iw_table_row">
+                    <td class="iw_attribute_name">Telephone:</td>
+                    <td id="iw-phone"></td>
+                </tr>
+            </table>
         </div>
-        <!-- <img id="place-icon" src="" height="16" width="16"> -->
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5RgNJYcMfGC61vZjMPvnH1SkACBEWkVE&libraries=places&callback=initAutocomplete"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script type="text/javascript" src="assets/js/map.js"></script>
-        <script type="text/javascript" src="assets/js/main.js"></script>
-        <script type="text/javascript" src="assets/js/sendEmail.js"></script>
+    </div>
+    <!-- <img id="place-icon" src="" height="16" width="16"> -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5RgNJYcMfGC61vZjMPvnH1SkACBEWkVE&libraries=places&callback=initAutocomplete"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/map.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script type="text/javascript" src="assets/js/sendEmail.js"></script>
 
-        <input id="pac-input" class="controls" type="text" placeholder="Search Your Destination">
-        <!-- Map Marker selection box -->
-        <div id="custom-controls">
-            <legend>Select one</legend>
-            <input class="types" type="radio" name="selector" value="museum" id="attractions">
-            <label for="museum">Museums</label><br>
-            <input class="types" type="radio" name="selector" value="lodging" id="accommodation">
-            <label for="accommodation">Accommodation</label><br>
-            <input class="types" type="radio" name="selector" value="bar" id="bars">
-            <label for="bars">Bars</label><br>
-            <input class="types" type="radio" name="selector" value="restaurant" id="restaurants">
-            <label for="restaurants">Restaurants</label><br>
-            <input type="button" value="Show" id="submit" onclick="renderMap();">
-        </div>
+    <input id="pac-input" class="controls" type="text" placeholder="Search Your Destination">
+    <!-- Map Marker selection box -->
+    <div id="custom-controls">
+        <legend>Select one</legend>
+        <input class="types" type="radio" name="selector" value="museum" id="attractions">
+        <label for="museum">Museums</label><br>
+        <input class="types" type="radio" name="selector" value="lodging" id="accommodation">
+        <label for="accommodation">Accommodation</label><br>
+        <input class="types" type="radio" name="selector" value="bar" id="bars">
+        <label for="bars">Bars</label><br>
+        <input class="types" type="radio" name="selector" value="restaurant" id="restaurants">
+        <label for="restaurants">Restaurants</label><br>
+        <input type="button" value="Show" id="submit" onclick="renderMap();">
+    </div>
 </body>
 
 </html>
