@@ -1,11 +1,6 @@
-var map, input, poiIcon;
-var infowindow
-var newLocation;
-var autocomplete;
+var map, input, poiIcon, places, infowindow, newLocation, autocomplete, selectedTypes;
 var markers = [];
-var selectedTypes;
 var ireland = { lat: 53.423956, lng: -7.941006 };
-var MARKER_ICON = 'assets/icons/bar.png';
 
 function initAutocomplete() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -33,6 +28,9 @@ function initAutocomplete() {
     //add search box on top left in map navigation
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(input);
     autocomplete.addListener('place_changed', onPlaceChanged);
+    infowindow = new google.maps.InfoWindow({
+        content: document.getElementById('info-content')
+    });
 }
 
 function onPlaceChanged() {
@@ -60,9 +58,7 @@ function onPlaceChanged() {
 }
 
 function renderMap() {
-    console.log('the position of marker:' + newLocation);
-    console.log('1 is: ' + selectedTypes);
-    //get selected type
+    //get selected type from user
     selectedTypes = '';
     clearMarkers();
     markers = [];
@@ -79,7 +75,6 @@ function renderMap() {
         radius: 3000,
         types: [selectedTypes]
     };
-    console.log(selectedTypes);
     infowindow = new google.maps.InfoWindow();
     var places = new google.maps.places.PlacesService(map);
     places.nearbySearch(search, callback);
@@ -104,26 +99,9 @@ function callback(results, status) {
             else if (selectedTypes == 'restaurant') {
                 poiIcon = 'assets/icons/restaurant.png';
             }
-            //creat new marker for POI
-            var markerIcon = {
-                url: poiIcon,
-                size: new google.maps.Size(71, 71),
-                origin: new google.maps.Point(0, 0),
-                anchor: new google.maps.Point(7, 24),
-                scaledSize: new google.maps.Size(28, 28)
-            };
-            markers[i] = new google.maps.Marker({
-                map: map,
-                position: results[i].geometry.location,
-                animation: google.maps.Animation.DROP,
-                icon: markerIcon
-            });
-            google.maps.event.addListener(markers[i], 'click', function() {
-                infowindow.setContent(place.name + '<br>' + place.vicinity);
-                //var infowindowContent = document.getElementById('info-content');
-                //infowindow.setContent(infowindowContent);
-                infowindow.open(map, this);
-            });
+
+            google.maps.event.addListener(markers[i], 'click', showInfoWindow);
+            dropMarker(results[i], i * 100);
         }
     }
 }
@@ -143,68 +121,26 @@ function clearResults(marker) {
     }
     marker = []
 }
-/*
-function dropMarker(i) {
-    return function() {
-        markers[i].setMap(map);
-    };
-}
-
-function addResult(result, i) {
-    var results = document.getElementById('results');
-    var markerLetter = String.fromCharCode('A'.charCodeAt(0) + (i % 26));
-    var markerIcon = MARKER_ICON + markerLetter + '.png';
-
-    var tr = document.createElement('tr');
-    tr.style.backgroundColor = (i % 2 === 0 ? '#F0F0F0' : '#FFFFFF');
-    tr.onclick = function() {
-        google.maps.event.trigger(markers[i], 'click');
-    };
-
-    var iconTd = document.createElement('td');
-    var nameTd = document.createElement('td');
-    var icon = document.createElement('img');
-    icon.src = markerIcon;
-    icon.setAttribute('class', 'placeIcon');
-    icon.setAttribute('className', 'placeIcon');
-    var name = document.createTextNode(result.name);
-    iconTd.appendChild(icon);
-    nameTd.appendChild(name);
-    tr.appendChild(iconTd);
-    tr.appendChild(nameTd);
-    results.appendChild(tr);
-}
-
-
-
-
-// add info window to markers
-function showInfoWindow() {
-    var marker = this;
-    places.getDetails({ placeId: marker.placeResult.place_id },
-        function(place, status) {
-            if (status !== google.maps.places.PlacesServiceStatus.OK) {
-                return;
+//drop markers on map with time out
+function dropMarker(position, timeout) {
+    window.setTimeout(function() {
+        //create marker for each result and place on map
+        markers.push(new google.maps.Marker({
+            map: map,
+            position: position.geometry.location,
+            animation: google.maps.Animation.DROP,
+            icon: {
+                url: poiIcon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(7, 24),
+                scaledSize: new google.maps.Size(28, 28)
             }
-            infowindow.open(map, marker);
-            buildIWContent(place);
-        });
-}
-// Load the place information into the HTML elements used by the info window.
-function buildIWContent(place) {
-    document.getElementById('iw-icon').innerHTML = '<img class="hotelIcon" ' +
-        'src="' + place.icon + '"/>';
-    document.getElementById('iw-url').innerHTML = '<b><a href="' + place.url +
-        '">' + place.name + '</a></b>';
-    document.getElementById('iw-address').textContent = place.vicinity;
+        }));
+    }, timeout);
 
-    if (place.formatted_phone_number) {
-        document.getElementById('iw-phone-row').style.display = '';
-        document.getElementById('iw-phone').textContent =
-            place.formatted_phone_number;
-    }
-    else {
-        document.getElementById('iw-phone-row').style.display = 'none';
-    }
 }
-*/
+
+function showInfoWindow() {
+
+}
