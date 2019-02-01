@@ -24,10 +24,15 @@ function initAutocomplete() {
     input = document.getElementById('pac-input');
     autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
+    // Set the data fields to return when the user selects a place.
+
     //add search box on top left in map navigation
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(input);
-    places = new google.maps.places.PlacesService(map);
     autocomplete.addListener('place_changed', onPlaceChanged);
+    infowindow = new google.maps.InfoWindow({
+        content: document.getElementById('info-content')
+    });
+    places = new google.maps.places.PlacesService(map);
 }
 
 function onPlaceChanged() {
@@ -49,8 +54,6 @@ function onPlaceChanged() {
             title: 'Your are here',
             position: place.geometry.location
         }));
-    }else {
-        document.getElementById('pac-input').placeholder = 'Enter a destination';
     }
     newLocation = place.geometry.location;
 
@@ -97,12 +100,11 @@ function callback(results, status) {
                 poiIcon = 'assets/icons/restaurant.png';
             }
             dropMarker(results[i], i * 100);
-            // google.maps.event.addListener(results[i], 'click', showInfoWindow);
-            /*google.maps.event.addListener(results[i], 'click', function() {
-            infowindow.setContent(results.name+ '<br>' +results.vicinity);
-            infowindow.open(map, this);
-        });*/
-            console.log(results.name);
+            console.log(results[i].place_id);
+            console.log(results[i].name);
+            console.log(results[i].vicinity);
+            //google.maps.event.addListener(results[i], 'click', showInfoWindow);
+            showInfoWindow(results[i]);
         }
 
     }
@@ -140,29 +142,25 @@ function dropMarker(position, timeout) {
             }
         }));
     }, timeout);
-    // google.maps.event.addListener(position, 'click', showInfoWindow);
-
-    //console.log(position.name);
-    //console.log(position.vicinity);
 
 }
 // Get the place details for each POI. Show the information in an info window,
 // anchored on the marker for the place that the user selected.
-function showInfoWindow() {
+function showInfoWindow(results) {
     console.log('the show info window function');
-    var marker = this;
-    places.getDetails({ placeId: marker.placeResult.place_id },
+    places.getDetails({ placeId: results.place_id },
         function(place, status) {
-            console.log('place and status: ' + place + ' ' + status);
+            console.log(place ,status);
             if (status !== google.maps.places.PlacesServiceStatus.OK) {
                 return;
             }
-            infowindow.open(map, marker);
+            //infowindow.open(map, results);
             buildIWContent(place);
         });
 }
 // Load the place information into the HTML elements used by the info window.
 function buildIWContent(place) {
+    console.log('call buildIWContent');
     document.getElementById('iw-icon').innerHTML = '<img class="hotelIcon" ' +
         'src="' + place.icon + '"/>';
     document.getElementById('iw-address').textContent = place.vicinity;
