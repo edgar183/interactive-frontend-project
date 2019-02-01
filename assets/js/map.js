@@ -76,8 +76,6 @@ function renderMap() {
         radius: 3000,
         types: [selectedTypes]
     };
-    //infowindow = new google.maps.InfoWindow();
-
     places.nearbySearch(search, callback);
 }
 
@@ -100,10 +98,8 @@ function callback(results, status) {
                 poiIcon = 'assets/icons/restaurant.png';
             }
             dropMarker(results[i], i * 100);
-            console.log(results[i].place_id);
+
             console.log(results[i].name);
-            console.log(results[i].vicinity);
-            //google.maps.event.addListener(results[i], 'click', showInfoWindow);
             showInfoWindow(results[i]);
         }
 
@@ -142,7 +138,10 @@ function dropMarker(position, timeout) {
             }
         }));
     }, timeout);
-
+    console.log(position.place_id);
+    console.log(position.name);
+    console.log(position.vicinity);
+   // google.maps.event.addListener(position, 'click', showInfoWindow(position));
 }
 // Get the place details for each POI. Show the information in an info window,
 // anchored on the marker for the place that the user selected.
@@ -150,13 +149,14 @@ function showInfoWindow(results) {
     console.log('the show info window function');
     places.getDetails({ placeId: results.place_id },
         function(place, status) {
-            console.log(place ,status);
+            console.log(status);
             if (status !== google.maps.places.PlacesServiceStatus.OK) {
                 return;
             }
             //infowindow.open(map, results);
             buildIWContent(place);
         });
+    console.log(results.place_id);
 }
 // Load the place information into the HTML elements used by the info window.
 function buildIWContent(place) {
@@ -164,6 +164,7 @@ function buildIWContent(place) {
     document.getElementById('iw-icon').innerHTML = '<img class="hotelIcon" ' +
         'src="' + place.icon + '"/>';
     document.getElementById('iw-address').textContent = place.vicinity;
+    console.log(place.vicinity);
     if (place.formatted_phone_number) {
         document.getElementById('iw-phone-row').style.display = '';
         document.getElementById('iw-phone').textContent =
