@@ -13,6 +13,9 @@ function initAutocomplete() {
         minZoom: 5,
         maxZoom: 18
     });
+    infowindow = new google.maps.InfoWindow({
+        content: document.getElementById('info-content')
+    });
     //place radio button group on map control
     var radioButtons = document.getElementById('custom-controls');
     map.controls[google.maps.ControlPosition.RIGHT].push(radioButtons);
@@ -21,16 +24,10 @@ function initAutocomplete() {
     input = document.getElementById('pac-input');
     autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
-    // Set the data fields to return when the user selects a place.
-    autocomplete.setFields(
-        ['address_components', 'geometry', 'icon', 'name']);
-
     //add search box on top left in map navigation
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(input);
+    places = new google.maps.places.PlacesService(map);
     autocomplete.addListener('place_changed', onPlaceChanged);
-    infowindow = new google.maps.InfoWindow({
-        content: document.getElementById('info-content')
-    });
 }
 
 function onPlaceChanged() {
@@ -52,6 +49,8 @@ function onPlaceChanged() {
             title: 'Your are here',
             position: place.geometry.location
         }));
+    }else {
+        document.getElementById('pac-input').placeholder = 'Enter a destination';
     }
     newLocation = place.geometry.location;
 
@@ -69,19 +68,17 @@ function renderMap() {
             markers = [];
         }
     });
-
     let search = {
         location: newLocation,
         radius: 3000,
         types: [selectedTypes]
     };
-    infowindow = new google.maps.InfoWindow();
-    var places = new google.maps.places.PlacesService(map);
+    //infowindow = new google.maps.InfoWindow();
+
     places.nearbySearch(search, callback);
 }
 
 function callback(results, status) {
-    console.log('callback function: ' + selectedTypes);
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         clearResults();
         clearMarkers();
@@ -99,10 +96,15 @@ function callback(results, status) {
             else if (selectedTypes == 'restaurant') {
                 poiIcon = 'assets/icons/restaurant.png';
             }
-
-            google.maps.event.addListener(markers[i], 'click', showInfoWindow);
             dropMarker(results[i], i * 100);
+            // google.maps.event.addListener(results[i], 'click', showInfoWindow);
+            /*google.maps.event.addListener(results[i], 'click', function() {
+            infowindow.setContent(results.name+ '<br>' +results.vicinity);
+            infowindow.open(map, this);
+        });*/
+            console.log(results.name);
         }
+
     }
 }
 //clear Markers from map
@@ -138,9 +140,38 @@ function dropMarker(position, timeout) {
             }
         }));
     }, timeout);
+    // google.maps.event.addListener(position, 'click', showInfoWindow);
+
+    //console.log(position.name);
+    //console.log(position.vicinity);
 
 }
-
+// Get the place details for each POI. Show the information in an info window,
+// anchored on the marker for the place that the user selected.
 function showInfoWindow() {
-
+    console.log('the show info window function');
+    var marker = this;
+    places.getDetails({ placeId: marker.placeResult.place_id },
+        function(place, status) {
+            console.log('place and status: ' + place + ' ' + status);
+            if (status !== google.maps.places.PlacesServiceStatus.OK) {
+                return;
+            }
+            infowindow.open(map, marker);
+            buildIWContent(place);
+        });
+}
+// Load the place information into the HTML elements used by the info window.
+function buildIWContent(place) {
+    document.getElementById('iw-icon').innerHTML = '<img class="hotelIcon" ' +
+        'src="' + place.icon + '"/>';
+    document.getElementById('iw-address').textContent = place.vicinity;
+    if (place.formatted_phone_number) {
+        document.getElementById('iw-phone-row').style.display = '';
+        document.getElementById('iw-phone').textContent =
+            place.formatted_phone_number;
+    }
+    else {
+        document.getElementById('iw-phone-row').style.display = 'none';
+    }
 }
