@@ -15,6 +15,10 @@
         })();
     </script>
     <link rel="stylesheet" href="assets/css/main.css" type="text/css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine-html.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/boot.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.css" type="text/css" />
     <title>Holiday Destination Search</title>
 </head>
 
@@ -67,7 +71,7 @@
         </div>
     </div>
     <!-- Info window for places on map -->
-    <div style="display: none">
+    <div>
         <div id="info-content">
             <table>
                 <tr id="iw-url-row" class="iw_table_row">
@@ -85,12 +89,6 @@
             </table>
         </div>
     </div>
-
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5RgNJYcMfGC61vZjMPvnH1SkACBEWkVE&libraries=places&callback=initAutocomplete"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/map.js"></script>
-    <script type="text/javascript" src="assets/js/main.js"></script>
-    <script type="text/javascript" src="assets/js/sendEmail.js"></script>
     <!-- Search box input -->
     <input id="pac-input" class="controls" type="text" placeholder="Search Your Destination">
     <!-- Map Marker selection box -->
@@ -106,6 +104,16 @@
         <label for="restaurants">Restaurants</label><br>
         <input type="button" value="Show" id="submit" onclick="renderMap();">
     </div>
+    <!-- Load scrip files -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5RgNJYcMfGC61vZjMPvnH1SkACBEWkVE&libraries=places&callback=initAutocomplete"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/map.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script type="text/javascript" src="assets/js/sendEmail.js"></script>
+    <!-- Load Test script files -->
+    <script type="text/javascript" src="assets/js/testJs/mainTest.js"></script>
+    <script type="text/javascript" src="assets/js/testJs/mapTest.js"></script>
+    <script type="text/javascript" src="assets/js/testJs/senEmailTest.js"></script>
 </body>
 
 </html>
