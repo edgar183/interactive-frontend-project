@@ -8,8 +8,9 @@ function initAutocomplete() {
         center: ireland,
         streetViewControl: false,
         gestureHandling: 'cooperative',
-        fullscreenControl: false,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        disableDefaultUI: true,
+        zoomControl: true,
+        mapTypeId: 'hybrid',
         minZoom: 5,
         maxZoom: 18
     });
@@ -25,7 +26,7 @@ function initAutocomplete() {
     // Set the data fields to return when the user selects a place.
 
     //add search box on top left in map navigation
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(input);
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
     autocomplete.addListener('place_changed', onPlaceChanged);
     infowindow = new google.maps.InfoWindow({
         content: document.getElementById('info-content')
@@ -159,7 +160,7 @@ function showInfoWindow(results) {
         //buildIWContent(place);
         console.log(place.placeId);
     });
-    
+
 }
 // Load the place information into the HTML elements used by the info window.
 function buildIWContent(place) {
