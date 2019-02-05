@@ -6,11 +6,11 @@ The map and POI are handled by google map API Javascript code.
 
  
 ## UX
- The user is greeted with a simple one-page application that loads full-screen google map. On the screen, there are some controls that give the user control over the application. 
+The user is greeted with a simple one-page application that loads full-screen google map. On the screen, there are some controls that give the user control over the application. 
 This web app is for users that are looking for a simple map-based point of interest location search with simple controls. The user that will be visiting this page are looking for a location that they are in current or planning to visit, and point of interest in these locations: bars, restaurants, hotels. 
 My website is allowing the user to search for a location and select on of poi on the map to be displayed. 
 - As a user that wants to search next holiday destination, I can type it in the search bar on the map, so I can see it on the map. 
--As a user that is looking for a hotel in his/her location, can select it from the list and, so be presented with hotel markers on the map. 
+- As a user that is looking for a hotel in his/her location, can select it from the list and, so be presented with hotel markers on the map. 
 - As a user that has questions about how to use the app can click on question mark button to be presented with instructions
 - As a user that is looking to contact developer can click on the envelope button to be presented with contact form window.
 [Page diagram for desktop with contact form] (link)
