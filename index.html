@@ -15,6 +15,7 @@
         })();
     </script>
     <link rel="stylesheet" href="assets/css/main.css" type="text/css" />
+    <!-- Load framework -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/jasmine-html.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jasmine/3.3.0/boot.js"></script>
@@ -64,10 +65,6 @@
     <!-- Map container -->
     <div class="container-fluid">
         <div id="map"></div>
-        <div id="listing">
-            <table id="resultsTable">
-                <tbody id="results"></tbody>
-            </table>
         </div>
     </div>
     <!-- Info window for places on map -->
@@ -111,9 +108,9 @@
     <script type="text/javascript" src="assets/js/main.js"></script>
     <script type="text/javascript" src="assets/js/sendEmail.js"></script>
     <!-- Load Test script files -->
-    <script type="text/javascript" src="assets/js/testJs/mainTest.js"></script>
-    <script type="text/javascript" src="assets/js/testJs/mapTest.js"></script>
-    <script type="text/javascript" src="assets/js/testJs/senEmailTest.js"></script>
+    <script type="text/javascript" src="assets/js/spec/mainSpecs.js"></script>
+    <script type="text/javascript" src="assets/js/spec/mapSpec.js"></script>
+    <script type="text/javascript" src="assets/js/spec/senEmailTest.js"></script>
 </body>
 
 </html>
