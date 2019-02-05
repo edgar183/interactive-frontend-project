@@ -1,4 +1,4 @@
-var map, input, poiIcon, places, infowindow, newLocation, autocomplete, selectedTypes;
+var map, input, poiIcon, places, infowindow, newLocation, autocomplete, selectedTypes, search;
 var markers = [];
 var ireland = { lat: 53.423956, lng: -7.941006 };
 
@@ -13,9 +13,7 @@ function initAutocomplete() {
         minZoom: 5,
         maxZoom: 18
     });
-    infowindow = new google.maps.InfoWindow({
-        content: document.getElementById('info-content')
-    });
+
     //place radio button group on map control
     var radioButtons = document.getElementById('custom-controls');
     map.controls[google.maps.ControlPosition.RIGHT].push(radioButtons);
@@ -32,6 +30,7 @@ function initAutocomplete() {
     infowindow = new google.maps.InfoWindow({
         content: document.getElementById('info-content')
     });
+    infowindow = new google.maps.InfoWindow();
     places = new google.maps.places.PlacesService(map);
 }
 
@@ -67,11 +66,11 @@ function renderMap() {
     $('.types').each(function() {
         if ($(this).is(':checked')) {
             selectedTypes = ($(this).val());
-            clearMarkers();
-            markers = [];
+            //clearMarkers();
+            // markers = [];
         }
     });
-    let search = {
+    search = {
         location: newLocation,
         radius: 3000,
         types: [selectedTypes]
@@ -99,7 +98,7 @@ function callback(results, status) {
             }
             dropMarker(results[i], i * 100);
 
-            console.log(results[i].name);
+            console.log(results.placeId);
             showInfoWindow(results[i]);
         }
 
@@ -138,25 +137,29 @@ function dropMarker(position, timeout) {
             }
         }));
     }, timeout);
-    console.log(position.place_id);
-    console.log(position.name);
-    console.log(position.vicinity);
-   // google.maps.event.addListener(position, 'click', showInfoWindow(position));
+    console.log(markers);
+    //console.log(position.place_id);
+    //console.log(position.name);
+    //console.log(position.vicinity);
+    // google.maps.event.addListener(position, 'click', showInfoWindow(position));
 }
 // Get the place details for each POI. Show the information in an info window,
 // anchored on the marker for the place that the user selected.
 function showInfoWindow(results) {
     console.log('the show info window function');
-    places.getDetails({ placeId: results.place_id },
-        function(place, status) {
-            console.log(status);
-            if (status !== google.maps.places.PlacesServiceStatus.OK) {
-                return;
-            }
-            //infowindow.open(map, results);
-            buildIWContent(place);
+    places.getDetails(results, function(place, status) {
+        console.log(status);
+        if (status !== google.maps.places.PlacesServiceStatus.OK) {
+            return;
+        }
+        google.maps.event.addListener(results, 'click', function() {
+            infowindow.setContent('<div><strong>' + place.name + '</strong></div>');
+            infowindow.open(map, this);
         });
-    console.log(results.place_id);
+        //buildIWContent(place);
+        console.log(place.placeId);
+    });
+    
 }
 // Load the place information into the HTML elements used by the info window.
 function buildIWContent(place) {
