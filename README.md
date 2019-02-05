@@ -3,7 +3,7 @@
 This is a single page web application that allows users to search for their next holiday destination. The users can select destination city and country, find tourist attractions, find accommodation, find bars and restaurants.
 User types in search box his/her destination and map will centre itself on selected destination, now the user has the option to select one of the points of interest types that will are available in selections menu.
 The map and POI are handled by google map API Javascript code.
-[Link to website](https://edgar183.github.io/interactive-frontend-project/)
+https://edgar183.github.io/interactive-frontend-project/
 
  
 ## UX

@@ -8,8 +8,8 @@
     <link rel="icon" type="image/png" href="assets/icons/favicon-32x32.png" sizes="32x32" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
-    <script type="text/javascript">
+    <script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+    <script>
         (function() {
             emailjs.init("user_vZiPbt7Z5VMSjoQ7bL3wl");
         })();
@@ -42,16 +42,16 @@
             <h4>Contact Me. Let's work together. </h4>
             <form onsubmit="return sendEmail(this);">
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="fullname">Name</label>
                     <input type="text" name="name" class="form-control" id="fullname" placeholder="Name" required/>
                 </div>
                 <div class="form-group">
-                    <label for="email">Email address</label>
+                    <label for="emailaddress">Email address</label>
                     <input type="text" name="emailaddress" class="form-control" id="emailaddress" placeholder="Email" required/>
                 </div>
                 <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea row="5" name="projectsummary" class="form-control" id="projectsummary" placeholder="Project Description" required></textarea>
+                    <label for="projectsummary">Message</label>
+                    <textarea rows="5" name="projectsummary" class="form-control" id="projectsummary" placeholder="Project Description" required></textarea>
                 </div>
                 <button id="send-btn" type="submit" class="btn btn-success">Send</button>
             </form>
@@ -60,10 +60,9 @@
     <!-- Map container -->
     <div class="container-fluid">
         <div id="map"></div>
-        </div>
     </div>
     <!-- Info window for places on map -->
-    <div>
+    <div style="display:none">
         <div id="info-content">
             <table>
                 <tr id="iw-url-row" class="iw_table_row">
@@ -85,23 +84,27 @@
     <input id="pac-input" class="controls" type="text" placeholder="Search Your Destination">
     <!-- Map Marker selection box -->
     <div id="custom-controls">
-        <legend>Select one</legend>
-        <input class="types" type="radio" name="selector" value="museum" id="attractions">
-        <label for="museum">Museums</label><br>
-        <input class="types" type="radio" name="selector" value="lodging" id="accommodation">
-        <label for="accommodation">Accommodation</label><br>
-        <input class="types" type="radio" name="selector" value="bar" id="bars">
-        <label for="bars">Bars</label><br>
-        <input class="types" type="radio" name="selector" value="restaurant" id="restaurants">
-        <label for="restaurants">Restaurants</label><br>
-        <input type="button" value="Show" id="submit" onclick="renderMap();">
+        <form>
+            <fieldset>
+                <legend>Select one</legend>
+                <input class="types" type="radio" name="selector" value="museum" id="museum">
+                <label for="museum">Museums</label><br>
+                <input class="types" type="radio" name="selector" value="lodging" id="lodging">
+                <label for="lodging">Accommodation</label><br>
+                <input class="types" type="radio" name="selector" value="bar" id="bars">
+                <label for="bars">Bars</label><br>
+                <input class="types" type="radio" name="selector" value="restaurant" id="restaurants">
+                <label for="restaurants">Restaurants</label><br>
+                <input type="button" value="Show" id="submit" onclick="renderMap();">
+            </fieldset>
+        </form>
     </div>
     <!-- Load scrip files -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5RgNJYcMfGC61vZjMPvnH1SkACBEWkVE&libraries=places&callback=initAutocomplete"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/map.js"></script>
-    <script type="text/javascript" src="assets/js/main.js"></script>
-    <script type="text/javascript" src="assets/js/sendEmail.js"></script>
+    <script src="assets/js/map.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/sendEmail.js"></script>
 </body>
 
 </html>
