@@ -13,9 +13,9 @@ My website is allowing the user to search for a location and select on of poi on
 - As a user that is looking for a hotel in his/her location, can select it from the list and, so be presented with hotel markers on the map. 
 - As a user that has questions about how to use the app can click on question mark button to be presented with instructions
 - As a user that is looking to contact developer can click on the envelope button to be presented with contact form window.
-[Page diagram for desktop with contact form](https://drive.google.com/file/d/1JXIxv_3XZnUhJalH98xmYdrWT7AXXtd7/view?usp=sharing)
-[Page diagram for a mobile screen](https://drive.google.com/file/d/1s-sJAWFJ-aJIVUzhd_uWK8dNJ9txexeU/view?usp=sharing)
-[Page diagram for a mobile screen with info window](https://drive.google.com/file/d/1FDAlIl7U5pFOgEJ8Ssd9Dm8q3iDfgjUx/view?usp=sharing)
+1.[Page diagram for desktop with contact form](https://drive.google.com/file/d/1JXIxv_3XZnUhJalH98xmYdrWT7AXXtd7/view?usp=sharing)
+1.[Page diagram for a mobile screen](https://drive.google.com/file/d/1s-sJAWFJ-aJIVUzhd_uWK8dNJ9txexeU/view?usp=sharing)
+1.[Page diagram for a mobile screen with info window](https://drive.google.com/file/d/1FDAlIl7U5pFOgEJ8Ssd9Dm8q3iDfgjUx/view?usp=sharing)
 
 ## Features
 - The navigation bar has 3 buttons, 2 of them open alert windows with additional information.
