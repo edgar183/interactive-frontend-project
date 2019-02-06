@@ -28,3 +28,13 @@ $("button").hover(function() {
     $(this).css("background-color", "inherit");
     $('#send-btn').css("background-color", "#333");
 });
+//loading ajax image
+$(document).ready(function() {
+    $(document).ajaxStart(function() {
+        console.log('call ajaxStart');
+        $('#loading').css('display', 'block');
+    });
+    $(document).ajaxComplete(function() {
+        $('#loading').css('display', 'none');
+    });
+});
