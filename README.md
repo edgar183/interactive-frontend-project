@@ -35,8 +35,8 @@ My website is allowing the user to search for a location and select on of poi on
 ## Technologies Used
 
 In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
-- ![HTML5](https://commons.wikimedia.org/wiki/File:HTML5_logo_and_wordmark.svg#/media/File:HTML5_logo_and_wordmark.svg) 
-- CSS,
+- [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5) 
+- [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
 - [Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
     - The project uses **Javascript** to execute different parts of Google map API code.
 - [Google map API](https://cloud.google.com/maps-platform/)
