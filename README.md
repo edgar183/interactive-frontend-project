@@ -86,7 +86,7 @@ Creating a repository on a local git in Cloud9 and one external in the GitHub.
 3. In GitHub, I created a GitHub Pages to host my project page from a GitHub repository.
 
 ### Media
-- [Camera Icon](assets/icons/camera.png) made by [Freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com 
+- ![alt text](assets/icons/camera.png "Camera Icon) made by [Freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com 
 - [Hotel Icon](https://www.flaticon.com/authors/freepik) made by Freepik from www.flaticon.com 
 - [Bar Icon](https://www.flaticon.com/authors/freepik) made by Freepik from www.flaticon.com 
 - [Restaurant Icon](https://www.flaticon.com/authors/freepik) made by Freepik from www.flaticon.com 
