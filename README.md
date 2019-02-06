@@ -86,9 +86,9 @@ Creating a repository on a local git in Cloud9 and one external in the GitHub.
 3. In GitHub, I created a GitHub Pages to host my project page from a GitHub repository.
 
 ### Media
-![alt text](assets/icons/camera.png "Camera Icon") made by [Freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com 
-![alt text](assets/icons/hotel.png "Hotel Icon") made by [Freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com 
-![alt text](assets/icons/bar.png "Bar Icon") made by [Freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com 
-![alt text](assets/icons/restaurant.png "Restaurant Icon") made by [Freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com 
-![alt text](assets/icons/location.png "Place location Icon") made by [Freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com 
+- ![alt text](assets/icons/camera.png "Camera Icon") made by [Freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com 
+- ![alt text](assets/icons/hotel.png "Hotel Icon") made by [Freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com 
+- ![alt text](assets/icons/bar.png "Bar Icon") made by [Freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com 
+- ![alt text](assets/icons/restaurant.png "Restaurant Icon") made by [Freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com 
+- ![alt text](assets/icons/location.png "Place location Icon") made by [Freepik](https://www.flaticon.com/authors/freepik) from www.flaticon.com 
 - [Page loading animation](https://gifer.com/en/WHda) 
