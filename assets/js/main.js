@@ -26,4 +26,5 @@ $("button").hover(function() {
     $(this).css("background-color", "#428bca");
 }, function() {
     $(this).css("background-color", "inherit");
+    $('#send-btn').css("background-color", "#333");
 });
