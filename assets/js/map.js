@@ -10,7 +10,7 @@ function initAutocomplete() {
         gestureHandling: 'cooperative',
         disableDefaultUI: true,
         zoomControl: true,
-        mapTypeId: 'hybrid',
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
         minZoom: 5,
         maxZoom: 18
     });
@@ -23,18 +23,16 @@ function initAutocomplete() {
     input = document.getElementById('pac-input');
     autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
-    // Set the data fields to return when the user selects a place.
 
-    //add search box on top left in map navigation
+    //add search box on top center in map navigation
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
     autocomplete.addListener('place_changed', onPlaceChanged);
     infowindow = new google.maps.InfoWindow({
         content: document.getElementById('info-content')
     });
-    infowindow = new google.maps.InfoWindow();
     places = new google.maps.places.PlacesService(map);
 }
-
+//change place on map when user enters destination and selects it from list
 function onPlaceChanged() {
     var place = autocomplete.getPlace();
     var markerLocation = {
@@ -56,7 +54,6 @@ function onPlaceChanged() {
         }));
     }
     newLocation = place.geometry.location;
-
 }
 
 function renderMap() {
@@ -67,13 +64,11 @@ function renderMap() {
     $('.types').each(function() {
         if ($(this).is(':checked')) {
             selectedTypes = ($(this).val());
-            //clearMarkers();
-            // markers = [];
         }
     });
     search = {
         location: newLocation,
-        radius: 3000,
+        radius: 5000,
         types: [selectedTypes]
     };
     places.nearbySearch(search, callback);
@@ -81,7 +76,6 @@ function renderMap() {
 
 function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
-        clearResults();
         clearMarkers();
         for (var i = 0; i < results.length; i++) {
             //check the type of poi and asigne the corect icon image
@@ -98,14 +92,11 @@ function callback(results, status) {
                 poiIcon = 'assets/icons/restaurant.png';
             }
             dropMarker(results[i], i * 100);
-
-            console.log(results.placeId);
-            showInfoWindow(results[i]);
         }
 
     }
 }
-//clear Markers from map
+//clear Markers from the map before placing new ones
 function clearMarkers() {
     for (var i = 0; i < markers.length; i++) {
         if (markers[i]) {
@@ -113,13 +104,6 @@ function clearMarkers() {
         }
     }
     markers = [];
-}
-//clear markers from map after change of location
-function clearResults(marker) {
-    for (var m in marker) {
-        marker[m].setMap(null)
-    }
-    marker = []
 }
 //drop markers on map with time out
 function dropMarker(position, timeout) {
@@ -138,29 +122,25 @@ function dropMarker(position, timeout) {
             }
         }));
     }, timeout);
-    console.log(markers);
-    //console.log(position.place_id);
-    //console.log(position.name);
-    //console.log(position.vicinity);
-    // google.maps.event.addListener(position, 'click', showInfoWindow(position));
+    showInfoWindow(position);
+    // google.maps.event.addListener(position, 'click', showInfoWindow);
+    console.log(position.place_id);
+    console.log(position.name);
+    console.log(position.vicinity);
+
 }
 // Get the place details for each POI. Show the information in an info window,
 // anchored on the marker for the place that the user selected.
 function showInfoWindow(results) {
     console.log('the show info window function');
     places.getDetails(results, function(place, status) {
-        console.log(status);
         if (status !== google.maps.places.PlacesServiceStatus.OK) {
             return;
         }
-        google.maps.event.addListener(results, 'click', function() {
-            infowindow.setContent('<div><strong>' + place.name + '</strong></div>');
-            infowindow.open(map, this);
-        });
-        //buildIWContent(place);
-        console.log(place.placeId);
+        console.log(place.place_id);
+        //infowindow.open(map, this);
+        buildIWContent(place);
     });
-
 }
 // Load the place information into the HTML elements used by the info window.
 function buildIWContent(place) {
