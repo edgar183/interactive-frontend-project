@@ -76,7 +76,6 @@ In this section, you should mention all of the languages, frameworks, libraries,
     2. Try to enter all details and click **send** button and verify the email was received from website to js email server. 
 
 ### Bugs
-- The loading gif is not opening at ajax request stage. I should be showing **loading** gif when the website is first loading. The search bar and radio button group should not be visible at this point. 
 - The info window is not opening when marker on the map is clicked despite all information is available and passed to correct methods. Due to this bug, the .addListener function is commented out.
 
 ## Deployment
