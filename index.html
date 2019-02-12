@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +16,6 @@
     <link rel="stylesheet" href="assets/css/main.css" type="text/css" />
     <title>Holiday Destination</title>
 </head>
-
 <body>
     <!-- Nav Bar -->
     <nav class="navbar navbar-default container-fluid">
@@ -32,7 +30,7 @@
     <!-- Info dialog box -->
     <div id="info-dialog" class="dialog">
         <div class="info-content">
-            <p>The application can help user to search for their next holiday destination city and point of interest in it. <br> The user can select destination city and one of tourist attractions in the area.<br> <strong>Museums, Accommodation, Bars and Restaurants.</strong><br>                Only one of POI can be selected at the time.<br> By selecting one of POI and clicking <strong>Show</strong> button the map will display markers of the places. </p>
+            <p>The application can help user to search for their next holiday destination city and point of interest in it. <br> The user can select destination city and one of the tourist attractions in the area.<br> <strong>Museums, Accommodation, Bars and Restaurants.</strong><br>                Only one of POI can be selected at the time.<br> By selecting one of POI and clicking <strong>Show</strong> button the markers will be placed on the map. Each marker can be clicked to show basic information about the place.</p>
         </div>
     </div>
     <!-- Contac dialog box -->
@@ -64,9 +62,9 @@
     <!-- Info window for places on map -->
     <div id="info-content">
         <table>
-            <tr id="iw-url-row" class="iw_table_row">
+            <tr id="iw-name-row" class="iw_table_row">
                 <td id="iw-icon" class="iw_table_icon"></td>
-                <td id="iw-url"></td>
+                <td id="iw-name"></td>
             </tr>
             <tr id="iw-address-row" class="iw_table_row">
                 <td class="iw_attribute_name">Address:</td>
@@ -103,8 +101,6 @@
     <script src="assets/js/sendEmail.js"></script>
     <script src="assets/js/main.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5RgNJYcMfGC61vZjMPvnH1SkACBEWkVE&libraries=places&callback=initAutocomplete"></script>
-
-
 </body>
 
 </html>
