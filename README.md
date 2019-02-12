@@ -76,7 +76,7 @@ In this section, you should mention all of the languages, frameworks, libraries,
     2. Try to enter all details and click **send** button and verify the email was received from website to js email server. 
 
 ### Bugs
-- The info window is not opening when marker on the map is clicked despite all information is available and passed to correct methods. Due to this bug, the .addListener function is commented out.
+- A contact form is not showing the required form field error if the field left empty and form is sent. 
 
 ## Deployment
 Creating a repository on a local git in Cloud9 and one external in the GitHub. 
