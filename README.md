@@ -1,5 +1,4 @@
 # Holiday Destination Search
-
 This is a single page web application that allows users to search for their next holiday destination. The users can select destination city and country, find tourist attractions, find accommodation, find bars and restaurants.
 User types in search box his/her destination and map will centre itself on selected destination, now the user has the option to select one of the points of interest types that will are available in selections menu.
 The map and POI are handled by google map API Javascript code.
@@ -33,7 +32,6 @@ My website is allowing the user to search for a location and select on of poi on
 - Get directions from the current position to selected poi location. The user can add the current location manually or allow a browser to pinpoint his current location and by selecting 'direction to' option on the marker the map will show a walking direction to the poi.  
 
 ## Technologies Used
-
 In this section, you should mention all of the languages, frameworks, libraries, and any other tools that you have used to construct this project. For each, provide its name, a link to its official site and a short sentence of why it was used.
 - [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5) 
 - [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
@@ -51,7 +49,6 @@ In this section, you should mention all of the languages, frameworks, libraries,
     - The project uses a GitHub to host website and for version control. 
 
 ## Testing
-
 - Browser
     - The page was tested using Chrome and Firefox browsers. The goal of this test was to make sure the same fonts are loaded on both of the browsers and the map is loaded and rendered as intended.
     - The version of the chrome is - 70.0.3538.77 official Build
