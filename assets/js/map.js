@@ -24,7 +24,7 @@ function initAutocomplete() {
     });
     //add search box on top center in map navigation
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
-    autocomplete.addListener('place_changed', onPlaceChanged);
+    autocomplete.addListener('place-changed', onPlaceChanged);
 
     infowindow = new google.maps.InfoWindow({
         content: document.getElementById('info-content')

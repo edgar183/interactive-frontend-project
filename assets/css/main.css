@@ -122,17 +122,17 @@ body {
     display: inline;
 }
 
-.hotelIcon {
+.hotel-icon {
     width: 24px;
     height: 24px;
 }
 
-.iw_attribute_name {
+.iw-attribute-name {
     font-weight: bold;
     text-align: left;
 }
 
-.iw_table_icon {
+.iw-table-icon {
     text-align: left;
 }
 
