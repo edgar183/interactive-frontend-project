@@ -1,191 +1,169 @@
 html,
 body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 #map {
-    display: block;
-    overflow: visible !important;
-    position: fixed !important;
-    height: 94%;
-    width: 100%;
-    top: 52px;
-    right: 0px;
-    bottom: 0px;
+  display: block;
+  overflow: visible !important;
+  position: fixed !important;
+  height: 94%;
+  width: 100%;
+  top: 52px;
+  right: 0px;
+  bottom: 0px;
 }
 
 /*---------------------------Nav bar ---*/
 
 .navbar {
-    margin-bottom: 0;
-    z-index: 1;
+  margin-bottom: 0;
+  z-index: 1;
 }
 
-.navbar-nav>li>a {
-    padding: 6px 3px;
+.navbar-nav > li > a {
+  padding: 6px 3px;
 }
 
 .fa,
 .fas {
-
-    font-weight: 900;
-    font-size: 2.5em;
+  font-weight: 900;
+  font-size: 2.5em;
 }
 
 /*-----------------------diabog box ---*/
 
 .dialog {
-    display: none;
-    position: fixed;
-    z-index: 2;
-    padding-top: 100px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+  position: fixed;
+  z-index: 2;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .info-content {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    border-radius: 15px;
-    width: 400px;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 15px;
+  width: 400px;
 }
 
 .btn {
-    border: none;
-    background-color: inherit;
+  border: none;
+  background-color: inherit;
 }
 
 .btn-success {
-    background-color: #1f1f1f;
+  background-color: #1f1f1f;
 }
 
 .close {
-    color: #FF0000;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    opacity: 0.5;
+  color: #ff0000;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  opacity: 0.5;
 }
 
 .close:hover,
 .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /*---------------------------Search bar ---*/
 
 #description {
-    font-family: Roboto;
-    font-size: 15px;
-    font-weight: 300;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
 }
 
 #pac-input {
-    right: 3px !important;
-    background-color: #fff;
-    font-family: Roboto;
-    font-size: 15px;
-    font-weight: 300;
-    margin-left: 12px;
-    padding: 0 11px 0 13px;
-    text-overflow: ellipsis;
-    width: 300px;
-    margin-top: 5px;
+  right: 3px !important;
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+  margin-top: 5px;
 }
 
 #pac-input:focus {
-    border-color: #4d90fe;
+  border-color: #4d90fe;
 }
 
 /*---------------------------Info window ---*/
 
 #info-content .title {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 #info-content {
-    display: none;
+  display: none;
 }
 
 #map #info-content {
-    display: inline;
+  display: inline;
 }
 
-.hotel-icon {
-    width: 24px;
-    height: 24px;
+.hotelIcon {
+  width: 24px;
+  height: 24px;
 }
 
 .iw-attribute-name {
-    font-weight: bold;
-    text-align: left;
+  font-weight: bold;
+  text-align: left;
 }
 
 .iw-table-icon {
-    text-align: left;
+  text-align: left;
 }
 
 /*--------------------------Custom map controls ---*/
 
 #custom-controls {
-    right: 3px !important;
-    top: 32px !important;
-    padding: 5px 10px 10px;
-    background-color: #f8f8f8;
-    border-style: solid;
-    border-width: 1px;
-    font-family: Roboto;
-    font-size: 13px;
-    font-weight: 300;
+  right: 3px !important;
+  top: 32px !important;
+  padding: 5px 10px 10px;
+  background-color: #f8f8f8;
+  border-style: solid;
+  border-width: 1px;
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
 }
 
 .pac-card {
-    margin: 10px 10px 0 0;
-    border-radius: 2px 0 0 2px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    outline: none;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    background-color: #fff;
-    font-family: Roboto;
+  margin: 10px 10px 0 0;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  font-family: Roboto;
 }
 
 /*--------------------------- Media ruls ---*/
 
 @media screen and (max-width: 425px) {
-    .info-content {
-        width: 99%;
-    }
-}
-
-/*--------------------------- Loading gif div ---*/
-
-#loading {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    position: fixed;
-    display: none;
-    background-color: #fff;
-    z-index: 99;
-    text-align: center;
-}
-
-#load-image {
-    position: absolute;
-    top: 100px;
-    left: 240px;
-    z-index: 100;
+  .info-content {
+    width: 99%;
+  }
 }
